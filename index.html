@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Code Generator</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    #code {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="code">Click "Generate Code"</div>
+    <button onclick="generateCode()">Generate Code</button>
+    <button onclick="openPrntSc()">Open prnt.sc Link</button>
+  </div>
+
+  <script>
+    let currentCode = '';
+
+    function generateCode() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters[randomIndex];
+      }
+      currentCode = result;
+      document.getElementById('code').textContent = result;
+    }
+
+    function openPrntSc() {
+      if (currentCode) {
+        const url = 'https://prnt.sc/' + currentCode;
+        window.open(url, '_blank');
+      } else {
+        alert('Please generate a code first.');
+      }
+    }
+  </script>
+</body>
+</html>
